@@ -316,15 +316,22 @@ public class LinkedTree {
     public int sumKeys() {
         return sumKeysTree(root);     // pass in the root of the tree as a whole
     }
-    
+
     /*
-     * Recursively computes the sum of the keys in the tree/subtree whose 
-     * root is specified. Note that the parameter is *not* necessarily 
-     * the root of the entire tree. 
+     * Recursively computes the sum of the keys in the tree/subtree whose
+     * root is specified. Note that the parameter is *not* necessarily
+     * the root of the entire tree.
      */
     public static int sumKeysTree(Node root) {
-        /*** LAB 10: IMPLEMENT THIS METHOD ***/
-        return 0;
+        if (root==null)
+            return 0;
+
+        int sum = root.key;
+
+        sum += sumKeysTree(root.left);
+        sum += sumKeysTree(root.right);
+
+        return sum;
     }
     
     /*
@@ -335,12 +342,32 @@ public class LinkedTree {
      * key is missing.
      */
     public int sumAlongPath(int key) {
-        /*** LAB 10: IMPLEMENT THIS METHOD ***/
-        return 0;
+        Node curr = root;
+        int sum = 0;
+
+        while (curr!=null) {
+            sum+=curr.key;
+            if (key==curr.key)
+                return sum;
+            else if (key<curr.key)
+                curr = curr.left;
+            else
+                curr = curr.right;
+        }
+
+        return sum;
     }
     
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+
+        LinkedTree tree = new LinkedTree();
+        int[] keys = {8, 4, 15, 2, 5, 30};
+        tree.insertKeys(keys);
+        System.out.println(tree.sumKeys());
+        System.out.println(tree.sumAlongPath(5));
+
+        /*
         
         LinkedTree tree = new LinkedTree();
         tree.insert(7, "root node");
@@ -391,5 +418,6 @@ public class LinkedTree {
         System.out.print("  inorder: ");
         tree.inorderPrint();
         tree.levelOrderPrint();
+        */
     }
 }
