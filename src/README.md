@@ -16,6 +16,6 @@
 
 # Task 4: More questions
 
-1. Yes, by alphabetical order. Each parent of two children contain one that is less than the parent and one that is more.
-3. Yes, the tree is balanced as each subtree is the same height or differs by one.
+1. No because E's children are both less than it in alphabetical order.
+3. No, as H's subtree heights do not match.
 4. Yes, the tree is balanced.
